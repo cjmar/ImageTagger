@@ -1,0 +1,125 @@
+body
+{
+    background-color: rgb(128, 128, 128);
+}
+
+#sidebar
+{
+    margin-top: 30px;
+    position:fixed;
+    width:15%;
+    left: 20px;
+    border:black solid 1px;
+    overflow:hidden;
+    border-radius: 5px;
+    background-color: rgb(150, 150, 150);
+}
+
+.searchDiv
+{
+    text-align: center
+}
+
+.center
+{
+    background-color: salmon;
+}
+
+.searchBar
+{
+    margin-top: 5px;
+}
+
+.clear
+{
+    clear:both;
+}
+
+li.tag
+{
+    list-style-type: none;
+}
+
+.contentMain
+{
+    width:100%;
+    height:auto;
+}
+
+.cardImg
+{
+    width:100%;
+    border-radius: 10px;
+}
+
+.cardContainer
+{
+    width:200px;
+    margin: 20px;
+    height:200px;
+    overflow:hidden;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: rgb(128, 128, 128);
+}
+
+.imgFit
+{
+    margin:auto;
+    max-width:100%;
+}
+
+.imgFull
+{
+    position:absolute;
+    left:0;
+    z-index: 999;
+}
+
+.imgCenterFit
+{
+    position:absolute;
+    z-index: 999;
+    max-width: 100%;
+    left:0;
+}
+
+.imgInfoBox
+{
+    display:block;
+    width:75%;
+    height:300px;
+}
+
+footer
+{
+    position:fixed;
+    bottom:0px;
+    width:100%;
+}
+
+.styled-table
+{   
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size:0.9em;
+    font-family:sans-serif;
+    min-width:400px;
+}
+
+.styled-table thead tr
+{
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td
+{
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr
+{
+    border-bottom: 1px solid black;
+}
+

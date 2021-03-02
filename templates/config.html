@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div>
+    <p>This page will allow you to manage stuff</p>
+    <pre>C:\Users\Cody\Desktop\tests</pre>
+    <table class="styled-table">
+    <thead>
+        <th>Active</th>
+        <th>Saved Folder Paths</th>
+    </thead>
+    <tbody>
+    {% for folder in data["Folders"] %}
+        {%set filePath = folder["path"]%}
+        <tr>
+        <td>
+        {%if folder["active"]%}
+        <input type="radio" id="active{{filePath}}" name="activePath" onclick="activePath('{{filePath}}')" checked>
+        {%else%}
+        <input type="radio" id="active{{filePath}}" name="activePath" onclick="activePath('{{filePath}}')">
+        {%endif%}
+        <label for="activePath"></label><br>
+        </td>
+        <td>
+        {{filePath}}
+        </td>
+        <td><button type="button" onclick="deletePath('{{ filePath}}');" class="btn float-right">Delete</button></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    <br>
+    <label for="addPath">Create: </label>
+    <input type="text" id="addPath" name="addPath">
+    <button type="button" onclick="createPath();" class="btn">Add</button>
+
+
+    </div>
+
+    <script>
+        let d = {{ data | tojson }};
+
+        let deletePath = function(path)
+        {
+            //console.log("Creating path " + path)
+            var form = document.createElement('form');
+            form.setAttribute('method', 'post');
+            form.setAttribute('action', "/path/" + path + "?delete=true");
+            form.style.display = 'hidden';
+            document.body.appendChild(form)
+            form.submit();
+        }
+
+        let createPath = function()
+        {
+            path = document.getElementById("addPath").value;
+            //console.log("Creating path " + path)
+            var form = document.createElement('form');
+            form.setAttribute('method', 'post');
+            form.setAttribute('action', "/path/" + path);
+            form.style.display = 'hidden';
+            document.body.appendChild(form)
+            form.submit();
+        }
+
+        let activePath = function(path)
+        {
+            var form = document.createElement('form');
+            form.setAttribute('method', 'post');
+            form.setAttribute('action', "/path/" + path + "?active=true");
+            form.style.display = 'hidden';
+            document.body.appendChild(form)
+            form.submit();
+        }
+        console.log(d)
+    </script>
+{% endblock %}

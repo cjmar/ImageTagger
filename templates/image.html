@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% block content %}
+    <br>
+    <div>
+        <img class="imgFit" data-toggle="false" id="singleImage" src="/getimage/{{img}}" alt={{img}} onclick="toggleFullSize('singleImage')">
+    </div>
+    
+    <script>
+        let d = {{ data | tojson }};
+        sidePanel = document.getElementById("infoPanel");
+        
+        let buildImgDesc = function()
+        {
+            let overview = document.createTextNode("Edit image tags and data");
+            sidePanel.appendChild(overview);
+
+            let tagInput = document.createElement("input");
+            tagInput.classList.add("searchBar");
+            tagInput.setAttribute("id", "imageTags")
+            tagInput.setAttribute("type", "text");
+            tagInput.setAttribute("name", "imageTags");
+            tagInput.setAttribute("placeholder", "current image tags");
+            sidePanel.appendChild(tagInput);
+
+            sidePanel.appendChild(document.createElement("br"));
+            let descLabel = document.createTextNode("Description");
+            sidePanel.appendChild(descLabel);
+            sidePanel.appendChild(document.createElement("br"));
+
+            let descText = document.createElement("textarea");
+            descText.setAttribute("id", "imgDesc");
+            descText.setAttribute("name", "imgDesc")
+            descText.setAttribute("rows", "8")
+            sidePanel.appendChild(descText);
+
+            //Placeholder until this is fleshed out
+            sidePanel.appendChild(document.createElement("br"));
+            sidePanel.appendChild(document.createTextNode("Rating: - Favorite:"));
+
+            sidePanel.appendChild(document.createElement("br"));
+            sidePanel.appendChild(document.createElement("br"));
+            sidePanel.appendChild(document.createTextNode("You must submit to save any changes"));
+            let btn = document.createElement("button");
+            btn.setAttribute("type", "button")
+            btn.innerHTML = "Submit";
+            btn.classList = "btn btn-dark";
+            btn.addEventListener("click", function() {updateImageData();}, null);
+            sidePanel.appendChild(btn);
+        }
+
+        let populateData = function()
+        {
+            let tags = document.getElementById("imageTags");
+            let desc = document.getElementById("imgDesc");
+            for(let i = 0; i < d.tags.length; i++)
+            {
+                tags.value += d.tags[i] + " "; 
+            }
+            desc.value = d.desc
+        }
+        /*
+          path: "",
+	      tags: [],
+	      desc: "",
+	      rating: int,
+	      favorite: int
+        */
+        let updateImageData = function()
+        {
+            let tags = document.getElementById("imageTags");
+            let desc = document.getElementById("imgDesc");
+            
+            d.path = "{{img}}";
+            d.tags = tags.value;
+            d.desc = desc.value;
+            d.rating = 0;
+            d.favorite = 0;
+
+            let xml = new XMLHttpRequest();
+            let url = "/imagedata";
+            xml.open("POST", url, true);
+            xml.setRequestHeader("Content-Type", "application/json");
+            //Callback function
+            xml.onreadystatechange = function()
+            {
+                if(xml.readystate === 4 && xml.status === 200)
+                {
+                    //Success
+                }
+            };
+            let data = JSON.stringify(d);
+            xml.send(data);
+        }
+        console.log(d)
+        buildImgDesc();
+        populateData()
+    </script>
+{% endblock %}

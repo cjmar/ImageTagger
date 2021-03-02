@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="text-xs-center">
+        <ul class="pagination justify-content-center" id="paginationTop">
+        </ul>
+    </div>
+
+    <div class="row" id="pictureList">
+            {# <a href="/image/{{img}}">
+            <img class="card-img-top imageThumb" src="/getimage/{{img}}" id="{{img}}" alt={{img}}>
+            </a> #}
+    </div>
+
+    {# <div class="justify-content-center">
+    <ul class="pagination" id="paginationBot">
+    </ul>
+    </div> #}
+
+    <div class="text-xs-center">
+    <ul class="pagination justify-content-center" id="paginationBot">
+    </ul>
+    </div>
+
+    <script>
+        let imgs = {{ imgNames | tojson }};
+        imgView.setFileList(imgs);
+        imgView.showPage({{pagenumber}});
+    </script>
+
+{% endblock %}

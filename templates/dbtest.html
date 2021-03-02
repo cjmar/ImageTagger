@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div>
+    <p>
+        This page is for development only. 
+        The input bar will execute raw SQL on the database.
+        It will then display what it recieved under output.
+    </p>
+    <p>Other actions this box can execute. They are case sensitive.</p>
+    <p>Submitting raw SQL with the input bar is dangerous and cannot be undone</p>
+    <ul id="phrases">
+    {% for p in phrases %}
+        <li>{{p}}</li>
+    {% endfor %}
+    </ul>
+    <form method="get" id="form_id">
+        Input: <input type="text" id="searchText" name="search"><br>
+        <input type="button" onclick="btnPress()" value="Submit">
+    </form>
+    <br>
+    <p>Output</p>
+    <pre id="info">
+    </pre>
+</div>
+
+<script>
+let d = {{ data | tojson }};
+document.getElementById("info").innerHTML = JSON.stringify(d, undefined, 2);
+
+//Form validation and submition
+var btnPress = function()
+{
+    document.getElementById("form_id").submit();
+}
+</script>
+
+{% endblock %}
