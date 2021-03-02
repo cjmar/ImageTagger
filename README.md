@@ -1,5 +1,5 @@
-installation:
-* python 3.9.1 64bit
+Installation:
+* python 3.9.1 64bit, 3.6 should work fine
 * pip 
 * pip install flask
 * pip install flask-sqlalchemy
@@ -12,6 +12,13 @@ Tools:
 * HTML
 * CSS
 * Javascript
+
+To Run:
+* Install required prerequisites
+* Open command line window in root folder
+* Input "python app.py"
+* Navigate browser to "localhost:5000"
+* Server will output an IP for LAN connection for other devices
 
 To use:
 Navigate to the config nav link and add folder you wish to use. 
