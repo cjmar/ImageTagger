@@ -2,7 +2,6 @@ installation:
    python 3.9.1 64bit
    pip
    pip install flask
-   pip PIL still installed?
    pip install flask-sqlalchemy
 
 Python
