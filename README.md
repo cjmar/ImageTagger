@@ -5,12 +5,13 @@ installation:
 * pip install flask-sqlalchemy
    
 
-Python
-Flask
-sqlalchemy
-HTML
-CSS
-Javascript
+Tools:
+* Python
+* Flask
+* sqlalchemy
+* HTML
+* CSS
+* Javascript
 
 To use:
 Navigate to the config nav link and add folder you wish to use. 
