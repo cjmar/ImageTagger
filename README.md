@@ -1,10 +1,7 @@
 installation:
    python 3.9.1 64bit
-   
-   pip
-   
+   pip 
    pip install flask
-   
    pip install flask-sqlalchemy
    
 
